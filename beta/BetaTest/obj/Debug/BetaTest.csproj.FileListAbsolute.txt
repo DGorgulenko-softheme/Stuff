@@ -26,3 +26,6 @@ E:\CSharp\Beta\beta\BetaTest\bin\Debug\Agent.Contracts.dll
 E:\CSharp\Beta\beta\BetaTest\bin\Debug\Ionic.Zip.Reduced.dll
 E:\CSharp\Beta\beta\BetaTest\bin\Debug\MonoListener.dll
 E:\CSharp\Beta\beta\BetaTest\bin\Debug\ParallelExtensionsExtras.dll
+E:\CSharp\Beta\Stuff\beta\BetaTest\bin\Debug\BetaTest.exe.config
+E:\CSharp\Beta\Stuff\beta\BetaTest\obj\Debug\BetaTest.exe
+E:\CSharp\Beta\Stuff\beta\BetaTest\obj\Debug\BetaTest.pdb

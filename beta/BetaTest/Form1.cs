@@ -47,7 +47,7 @@ namespace BetaTest
             foreach (var Agent in protectedAgents)
             {
                 var agentDetails = coreClient.AgentsManagement.GetAgentDetails(Agent.Id.ToString());
-                var HostName = agentDetails.Metadata.HostName;
+                var HostName = agentDetails.Metadata.FullyQualifiedDomainName;
                 AgentList.Items.Add(HostName);
                 
             }

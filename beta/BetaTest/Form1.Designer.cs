@@ -43,24 +43,28 @@
             this.CompressionNum = new System.Windows.Forms.NumericUpDown();
             this.SizeBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.MbRButton = new System.Windows.Forms.RadioButton();
-            this.GbRButton = new System.Windows.Forms.RadioButton();
             this.IntervalNum = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
             this.LocationBox = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.RestartButton = new System.Windows.Forms.Button();
+            this.useCoreCredentialsCheckbox = new System.Windows.Forms.CheckBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.StatusBar = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CompressionNum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IntervalNum)).BeginInit();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // AgentList
             // 
             this.AgentList.AccessibleDescription = "";
+            this.AgentList.CheckOnClick = true;
             this.AgentList.FormattingEnabled = true;
             this.AgentList.Location = new System.Drawing.Point(12, 105);
             this.AgentList.Name = "AgentList";
-            this.AgentList.Size = new System.Drawing.Size(200, 139);
+            this.AgentList.Size = new System.Drawing.Size(200, 199);
             this.AgentList.TabIndex = 0;
             this.AgentList.SelectedIndexChanged += new System.EventHandler(this.AgentList_SelectedIndexChanged);
             // 
@@ -80,11 +84,12 @@
             // 
             // UpdateButton
             // 
+            this.UpdateButton.Enabled = false;
             this.UpdateButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.UpdateButton.Location = new System.Drawing.Point(304, 216);
+            this.UpdateButton.Location = new System.Drawing.Point(308, 213);
             this.UpdateButton.Name = "UpdateButton";
-            this.UpdateButton.Size = new System.Drawing.Size(79, 30);
-            this.UpdateButton.TabIndex = 1;
+            this.UpdateButton.Size = new System.Drawing.Size(58, 30);
+            this.UpdateButton.TabIndex = 8;
             this.UpdateButton.Text = "Update";
             this.UpdateButton.UseVisualStyleBackColor = true;
             this.UpdateButton.Click += new System.EventHandler(this.UpdateButton_Click);
@@ -103,7 +108,7 @@
             this.groupBox1.Size = new System.Drawing.Size(387, 80);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Connect";
+            this.groupBox1.Text = "Connect to Core \\ Agents";
             // 
             // label4
             // 
@@ -138,7 +143,7 @@
             this.PasswordBox.Name = "PasswordBox";
             this.PasswordBox.PasswordChar = '#';
             this.PasswordBox.Size = new System.Drawing.Size(92, 20);
-            this.PasswordBox.TabIndex = 2;
+            this.PasswordBox.TabIndex = 3;
             // 
             // UserNameBox
             // 
@@ -153,7 +158,7 @@
             this.ServerBox.Location = new System.Drawing.Point(6, 41);
             this.ServerBox.Name = "ServerBox";
             this.ServerBox.Size = new System.Drawing.Size(88, 20);
-            this.ServerBox.TabIndex = 2;
+            this.ServerBox.TabIndex = 1;
             this.ServerBox.Text = "Localhost";
             // 
             // label5
@@ -183,40 +188,18 @@
             this.SizeBox.Location = new System.Drawing.Point(218, 145);
             this.SizeBox.Name = "SizeBox";
             this.SizeBox.Size = new System.Drawing.Size(84, 20);
-            this.SizeBox.TabIndex = 2;
+            this.SizeBox.TabIndex = 4;
             this.SizeBox.Text = "1024";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(218, 105);
+            this.label2.Location = new System.Drawing.Point(218, 127);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(27, 13);
+            this.label2.Size = new System.Drawing.Size(57, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Size";
+            this.label2.Text = "Size in MB";
             this.label2.Click += new System.EventHandler(this.label2_Click);
-            // 
-            // MbRButton
-            // 
-            this.MbRButton.AutoSize = true;
-            this.MbRButton.Checked = true;
-            this.MbRButton.Location = new System.Drawing.Point(221, 125);
-            this.MbRButton.Name = "MbRButton";
-            this.MbRButton.Size = new System.Drawing.Size(41, 17);
-            this.MbRButton.TabIndex = 5;
-            this.MbRButton.TabStop = true;
-            this.MbRButton.Text = "MB";
-            this.MbRButton.UseVisualStyleBackColor = true;
-            // 
-            // GbRButton
-            // 
-            this.GbRButton.AutoSize = true;
-            this.GbRButton.Location = new System.Drawing.Point(262, 125);
-            this.GbRButton.Name = "GbRButton";
-            this.GbRButton.Size = new System.Drawing.Size(40, 17);
-            this.GbRButton.TabIndex = 6;
-            this.GbRButton.Text = "GB";
-            this.GbRButton.UseVisualStyleBackColor = true;
             // 
             // IntervalNum
             // 
@@ -233,7 +216,7 @@
             0});
             this.IntervalNum.Name = "IntervalNum";
             this.IntervalNum.Size = new System.Drawing.Size(65, 20);
-            this.IntervalNum.TabIndex = 9;
+            this.IntervalNum.TabIndex = 6;
             this.IntervalNum.Value = new decimal(new int[] {
             60,
             0,
@@ -254,7 +237,7 @@
             this.LocationBox.Location = new System.Drawing.Point(218, 184);
             this.LocationBox.Name = "LocationBox";
             this.LocationBox.Size = new System.Drawing.Size(165, 20);
-            this.LocationBox.TabIndex = 11;
+            this.LocationBox.TabIndex = 5;
             this.LocationBox.Text = "C:\\DDT\\data";
             // 
             // label7
@@ -262,36 +245,80 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(218, 168);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(48, 13);
+            this.label7.Size = new System.Drawing.Size(112, 13);
             this.label7.TabIndex = 12;
-            this.label7.Text = "Location";
+            this.label7.Text = "Location for new Data";
+            // 
+            // RestartButton
+            // 
+            this.RestartButton.Enabled = false;
+            this.RestartButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.RestartButton.Location = new System.Drawing.Point(218, 275);
+            this.RestartButton.Name = "RestartButton";
+            this.RestartButton.Size = new System.Drawing.Size(182, 30);
+            this.RestartButton.TabIndex = 9;
+            this.RestartButton.Text = "Restart";
+            this.RestartButton.UseVisualStyleBackColor = true;
+            this.RestartButton.Click += new System.EventHandler(this.StartButton_Click);
+            // 
+            // useCoreCredentialsCheckbox
+            // 
+            this.useCoreCredentialsCheckbox.AutoSize = true;
+            this.useCoreCredentialsCheckbox.Checked = true;
+            this.useCoreCredentialsCheckbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.useCoreCredentialsCheckbox.Location = new System.Drawing.Point(218, 252);
+            this.useCoreCredentialsCheckbox.Name = "useCoreCredentialsCheckbox";
+            this.useCoreCredentialsCheckbox.Size = new System.Drawing.Size(125, 17);
+            this.useCoreCredentialsCheckbox.TabIndex = 7;
+            this.useCoreCredentialsCheckbox.Text = "Use Core Credentials";
+            this.useCoreCredentialsCheckbox.UseVisualStyleBackColor = true;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.StatusBar});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 313);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(416, 22);
+            this.statusStrip1.TabIndex = 15;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // StatusBar
+            // 
+            this.StatusBar.Name = "StatusBar";
+            this.StatusBar.Size = new System.Drawing.Size(175, 17);
+            this.StatusBar.Text = "Please connect to core machine";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 259);
+            this.ClientSize = new System.Drawing.Size(416, 335);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.useCoreCredentialsCheckbox);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.LocationBox);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.GbRButton);
             this.Controls.Add(this.SizeBox);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.MbRButton);
             this.Controls.Add(this.IntervalNum);
             this.Controls.Add(this.CompressionNum);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label5);
+            this.Controls.Add(this.RestartButton);
             this.Controls.Add(this.UpdateButton);
             this.Controls.Add(this.AgentList);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "CoreTool Beta";
+            this.Text = "CoreTool";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CompressionNum)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.IntervalNum)).EndInit();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -313,12 +340,14 @@
         private System.Windows.Forms.NumericUpDown CompressionNum;
         private System.Windows.Forms.TextBox SizeBox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.RadioButton MbRButton;
-        private System.Windows.Forms.RadioButton GbRButton;
         private System.Windows.Forms.NumericUpDown IntervalNum;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox LocationBox;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button RestartButton;
+        private System.Windows.Forms.CheckBox useCoreCredentialsCheckbox;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel StatusBar;
     }
 }
 

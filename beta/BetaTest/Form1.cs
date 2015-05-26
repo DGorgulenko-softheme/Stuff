@@ -121,7 +121,7 @@ namespace BetaTest
                     if (AgentList.GetItemChecked(i))
                     {
                         StatusBar.Text = "Updating configuration for " + (string)AgentList.Items[i];
-                        string Dest = @"\\" + (string)AgentList.Items[i] + @"\\datagen\Parameters.csv";
+                        string Dest = @"\\" + (string)AgentList.Items[i] + @"\\changegen\Parameters.csv";
 
                         File.Copy(filePath, Dest, true);
                     }

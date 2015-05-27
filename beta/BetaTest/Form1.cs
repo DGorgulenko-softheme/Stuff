@@ -6,6 +6,9 @@ using System.Net;
 using Replay.Core.Client;
 using System.IO;
 using System.Management;
+using  System.Diagnostics;
+using System.Security.Principal;
+using Replay.Common.Contracts.Utilities.Impersonation;
 
 namespace BetaTest
 {
@@ -17,6 +20,45 @@ namespace BetaTest
         {
             InitializeComponent();
         }
+        public void SaveACopyfileToServer(string filePath, string savePath)
+        {
+            var directory = Path.GetDirectoryName(savePath).Trim();
+            var username = UserNameBox.Text;
+            var password = PasswordBox.Text;
+            var filenameToSave = Path.GetFileName(savePath);
+
+            if (!directory.EndsWith("\\"))
+                filenameToSave = "\\" + filenameToSave;
+
+            var command = "NET USE " + directory + " /delete";
+            ExecuteCommand(command, 5000);
+
+            command = "NET USE " + directory + " /user:" + username + " " + password;
+            ExecuteCommand(command, 5000);
+
+            command = " copy \"" + filePath + "\"  \"" + directory + filenameToSave + "\"";
+
+            ExecuteCommand(command, 5000);
+
+
+            command = "NET USE " + directory + " /delete";
+            ExecuteCommand(command, 5000);
+        }
+        public static int ExecuteCommand(string command, int timeout)
+        {
+            var processInfo = new ProcessStartInfo("cmd.exe", "/C " + command)
+            {
+                CreateNoWindow = true,
+                UseShellExecute = false,
+                WorkingDirectory = "C:\\",
+            };
+
+            var process = Process.Start(processInfo);
+            process.WaitForExit(timeout);
+            var exitCode = process.ExitCode;
+            process.Close();
+            return exitCode;
+        } 
         private void ConnectButton_Click(object sender, EventArgs e)
         {
             try
@@ -115,18 +157,16 @@ namespace BetaTest
                 StatusBar.Text = "Save file to temp folder..";
                 File.WriteAllText(filePath, sb.ToString());
 
-
                 for (int i = 0; i < AgentList.Items.Count; i++)
                 {
                     if (AgentList.GetItemChecked(i))
                     {
                         StatusBar.Text = "Updating configuration for " + (string)AgentList.Items[i];
-                        string Dest = @"\\" + (string)AgentList.Items[i] + @"\\changegen\Parameters.csv";
-
-                        File.Copy(filePath, Dest, true);
+                        string Dest = @"\\" + (string)AgentList.Items[i] + @"\changegen\Parameters.csv";
+                        SaveACopyfileToServer(filePath, Dest);
+                        // File.Copy(filePath, Dest, true);
                     }
                 }
-
                 StatusBar.Text = "Updating complete";
             }
             catch (Exception ex)

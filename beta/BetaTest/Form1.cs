@@ -63,7 +63,7 @@ namespace BetaTest
         {
             try
             {
-                StatusBar.Text = "Trying to connnect to the Core...";
+                StatusBar.Text = "Trying to connect to the Core...";
                 AgentList.Items.Clear();
                 if (String.IsNullOrEmpty(UserNameBox.Text) || String.IsNullOrEmpty(PasswordBox.Text))
                 {
@@ -73,9 +73,9 @@ namespace BetaTest
                 {
                     _coreClient = GetFullCoreClient(ServerBox.Text, 8006, UserNameBox.Text, PasswordBox.Text);
                 }
-                StatusBar.Text = "Getting Protected aggents";
+                StatusBar.Text = "Getting protected agents";
                 var protectedAgents = _coreClient.AgentsManagement.GetProtectedAgents();
-                StatusBar.Text = "Updating Agent list";
+                StatusBar.Text = "Updating agents list";
                 foreach (var Agent in protectedAgents)
                 {
                     var agentInfo = _coreClient.AgentsManagement.GetAgentInfo(Agent.Id.ToString());
@@ -91,7 +91,7 @@ namespace BetaTest
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something going wrong:\n\n"+ ex);
+                MessageBox.Show("Something went wrong:\n\n"+ ex);
             }
         }
         private static ICoreClient GetDefaultCoreClient(string host, int port)
@@ -154,7 +154,7 @@ namespace BetaTest
                 StringBuilder sb = new StringBuilder();
                 for (int index = 0; index < length; index++)
                     sb.AppendLine(string.Join(delimiter, output[index]));
-                StatusBar.Text = "Save file to temp folder..";
+                StatusBar.Text = "Saving file to temp folder...";
                 File.WriteAllText(filePath, sb.ToString());
 
                 for (int i = 0; i < AgentList.Items.Count; i++)
@@ -167,11 +167,11 @@ namespace BetaTest
                         // File.Copy(filePath, Dest, true);
                     }
                 }
-                StatusBar.Text = "Updating complete";
+                StatusBar.Text = "Update complete";
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Something going wrong:\n\n" + ex);
+                MessageBox.Show("Something went wrong:\n\n" + ex);
             }
         }
         private void RestartJob()
@@ -191,7 +191,7 @@ namespace BetaTest
                 else if (String.IsNullOrEmpty(UserNameBox.Text) || String.IsNullOrEmpty(PasswordBox.Text))
                 {
                     MessageBox.Show(
-                        "Please Enter user Name or Password. Also you can try to use current user to do that please set Use Core credentials checkbox.");
+                        "Please enter Username or Password. Also you can try to use current user. To do that please set Use Core credentials checkbox.");
                 }
                 else
                 {
@@ -232,7 +232,7 @@ namespace BetaTest
 
             catch (Exception ex)
             {
-                MessageBox.Show("Something going wrong:\n\n" + ex);
+                MessageBox.Show("Something went wrong:\n\n" + ex);
             }
         }
         private void UpdateButton_Click(object sender, EventArgs e)
